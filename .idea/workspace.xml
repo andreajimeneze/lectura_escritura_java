@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1d6d2a1e-3e99-4574-b23e-04b345bf368b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/carpetaNueva/fichero.txt" beforeDir="false" />
-    </list>
+    <list default="true" id="1d6d2a1e-3e99-4574-b23e-04b345bf368b" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,7 +54,7 @@
       <option name="presentableId" value="Default" />
       <updated>1715898690589</updated>
       <workItem from="1715898691654" duration="408000" />
-      <workItem from="1715899118074" duration="11449000" />
+      <workItem from="1715899118074" duration="11949000" />
     </task>
     <servers />
   </component>
