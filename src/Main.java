@@ -1,8 +1,6 @@
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.IOException;
-import java.io.FileWriter;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -26,6 +24,8 @@ public class Main {
 
         escribirArchivo(directorio, fichero, texto);
 
+        buscarTexto(directorio, fichero, texto);
+
     }
 
     public static void crearArchivo (String nombreDirectorio, String nombreArchivo ) {
@@ -34,13 +34,11 @@ public class Main {
         File fichero = new File(directorio, nombreArchivo);
 
         try {
-
             if(directorio.exists() == false) {
                 directorio.mkdirs();
             } else {
-                System.out.println("Directorio ya existe, continúe generando el archivo...");
+                System.out.println("Directorio ya existe, continúe generando el fichero...");
             }
-
 
             if (fichero.exists() == false) {
                 fichero.createNewFile();
@@ -49,7 +47,6 @@ public class Main {
                 System.out.println("Fichero ya existe");
             }
         } catch (IOException e) {
-            // Manejar la excepción aquí
             System.out.println("Error creando archivo: " + e.getMessage());
         }
     }
@@ -68,6 +65,55 @@ public class Main {
         } catch (IOException e) {
             System.out.println("Error escribiendo en el archivo: " + e.getMessage());
         }
+    }
 
+    public static void buscarTexto (String directorio, String nombreFichero, ArrayList<String> texto) {
+
+        File dir = new File("src/" + directorio);
+        File fichero = new File("src/" + directorio, nombreFichero);
+
+        if(!fichero.exists()) {
+            System.out.println("El fichero ingresado no existe");
+        } else {
+            try (FileReader fr = new FileReader(fichero);
+                 BufferedReader bufferedReader = new BufferedReader(fr);
+                 Scanner sc = new Scanner(System.in);
+            ) {
+
+                String linea;
+                int contador = 0;
+
+                System.out.println("Ingrese una palabra para verificar si existe en el fichero: ");
+                String palabraBuscada = formatWord(sc.nextLine());
+                Boolean palabraEncontrada = false;
+
+                while((linea = bufferedReader.readLine()) != null) {
+                    if(linea.contains(palabraBuscada)) {
+                       palabraEncontrada = true;
+                       contador++;
+                    }
+                }
+
+                if(palabraEncontrada)  {
+                    System.out.println("La palabra " + palabraBuscada + " está en el fichero " + contador + " veces");
+
+                } else {
+                    System.out.println("La palabra " + palabraBuscada + " NO ESTÁ en el fichero");
+                }
+
+            } catch (FileNotFoundException e) {
+                System.err.println("El fichero no fue encontrado: " + e.getMessage());
+            } catch (IOException e) {
+                System.err.println("Ocurrió un error al leer el fichero: " + e.getMessage());
+            }
+
+        }
+    }
+
+    private static String formatWord(String word) {
+        if (word == null || word.isEmpty()) {
+            return word;
+        }
+        return word.substring(0, 1).toUpperCase() + word.substring(1).toLowerCase();
     }
 }
